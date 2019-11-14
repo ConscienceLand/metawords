@@ -1,0 +1,17 @@
+<div style="height: 400px; width: 100%" leaflet
+  [(leafletZoom)]="zoom"
+  [(leafletCenter)]="center"
+  [leafletLayers]="layers"
+  (leafletClick)="click($event)"
+  [leafletOptions]="options">
+</div>
+<mat-list>
+  <mat-list-item *ngFor="let plot of layers">
+    <button mat-button (click)="centerPlot(plot)" >{{plot.words}}</button>
+    <button mat-button color="warn" (click)="plotRemove.emit(plot)">Remove</button>
+  </mat-list-item>
+</mat-list>
+<mat-list *ngIf="layers.length">
+  <mat-divider></mat-divider>
+  <mat-list-item> {{layers.length * 3 | currency}} </mat-list-item>
+</mat-list>
